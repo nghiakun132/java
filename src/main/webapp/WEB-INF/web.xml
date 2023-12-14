@@ -5,47 +5,71 @@
          version="5.0">
 
     <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>web.website.controller.DashboardServlet</servlet-class>
+    </servlet>
 
-        <servlet-name>Dashboard</servlet-name>
-        <servlet-class>
-            web.website.Dashboard
-        </servlet-class>
+    <servlet>
+        <servlet-name>
+            LoginServlet
+        </servlet-name>
+        <servlet-class>web.website.controller.LoginServlet</servlet-class>
+    </servlet>
 
+    <servlet>
+        <servlet-name>
+            LogoutServlet
+        </servlet-name>
+        <servlet-class>web.website.controller.LogoutServlet</servlet-class>
+    </servlet>
 
-
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>
-            web.website.Logout
-        </servlet-class>
-
-        <servlet-name>Table</servlet-name>
-        <servlet-class>
-            web.website.Table
-        </servlet-class>
-
+    <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>web.website.controller.ProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BrandServlet</servlet-name>
+        <servlet-class>web.website.controller.BrandServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CategoryServlet</servlet-name>
+        <servlet-class>web.website.controller.CategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>web.website.controller.UserServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Dashboard</servlet-name>
+        <servlet-name>DashboardServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>Table</servlet-name>
-        <url-pattern>/table</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/logout</url-pattern>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/product</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BrandServlet</servlet-name>
+        <url-pattern>/brand</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoryServlet</servlet-name>
+        <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+
         <servlet-name>default</servlet-name>
         <url-pattern>*.css</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
+
         <servlet-name>default</servlet-name>
         <url-pattern>*.js</url-pattern>
     </servlet-mapping>

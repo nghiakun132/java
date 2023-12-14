@@ -20,31 +20,32 @@ public class CategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            String action = request.getParameter("action");
+            String idStr = request.getParameter("id");
+
+            if (action != null && action.equals("delete") && idStr != null && !idStr.isEmpty()) {
+                int id = Integer.parseInt(request.getParameter("id"));
+
+                Connection conn = ConnectionManager.getConnection();
+
+                String sql = "DELETE FROM category WHERE id = ?";
+
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, id);
+
+                ps.executeUpdate();
+
+                response.sendRedirect(request.getContextPath() + "/category");
+                return;
+            }
 
             Connection conn = ConnectionManager.getConnection();
             ArrayList<Category> categories = new ArrayList<>();
 
-            //paginate
 
+            String sql = "SELECT * FROM category ORDER BY id DESC";
 
-            String pageStr = request.getParameter("page");
-            int page = 1;
-            if (pageStr != null && !pageStr.isEmpty()) {
-                page = Integer.parseInt(pageStr);
-            }
-
-            int limit = 100;
-
-            int offset = (page - 1) * limit;
-
-            String sql = "SELECT * FROM category LIMIT ? OFFSET ?";
-
-            //get data from database
             PreparedStatement ps = conn.prepareStatement(sql);
-
-            ps.setInt(1, limit);
-            ps.setInt(2, offset);
-
 
             ResultSet rs = null;
             rs = ps.executeQuery();
@@ -55,7 +56,7 @@ public class CategoryServlet extends HttpServlet {
 
             request.setAttribute("categories", categories);
 
-            request.getRequestDispatcher("list_category.jsp").forward(request, response);
+            request.getRequestDispatcher("pages/category/list_category.jsp").forward(request, response);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -80,6 +81,5 @@ public class CategoryServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
